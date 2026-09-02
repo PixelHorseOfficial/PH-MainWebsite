@@ -1,0 +1,20 @@
+.home-page {
+  background: #0a0a0a;
+  color: #ffffff;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.section-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #0a0a0a;
+  z-index: 1;
+}
+
+.section-wrapper.hero-clean {
+  z-index: 1;
+  /* No pixel effect - clean */
+  isolation: isolate;
+}

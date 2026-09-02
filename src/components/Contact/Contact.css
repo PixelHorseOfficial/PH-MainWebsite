@@ -1,0 +1,861 @@
+/* Main contact section styling */
+.pxh-contact {
+  padding: 8rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background with gradient effects */
+.pxh-contact-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.pxh-bg-gradient {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  animation: pxh-gradientFloat 20s ease-in-out infinite;
+}
+
+.pxh-gradient-1 {
+  width: 600px;
+  height: 600px;
+  top: -10%;
+  left: -15%;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+  animation-delay: 0s;
+}
+
+.pxh-gradient-2 {
+  width: 500px;
+  height: 500px;
+  top: 40%;
+  right: -10%;
+  background: radial-gradient(circle, rgba(255, 0, 255, 0.08) 0%, transparent 70%);
+  animation-delay: 7s;
+}
+
+.pxh-gradient-3 {
+  width: 400px;
+  height: 400px;
+  bottom: -5%;
+  left: 50%;
+  background: radial-gradient(circle, rgba(255, 102, 0, 0.06) 0%, transparent 70%);
+  animation-delay: 14s;
+}
+
+@keyframes pxh-gradientFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(80px, -60px) scale(1.1); }
+  50% { transform: translate(-40px, 80px) scale(0.9); }
+  75% { transform: translate(60px, -40px) scale(1.05); }
+}
+
+/* Container for content */
+.pxh-contact-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header section */
+.pxh-contact-header {
+  text-align: center;
+  margin-bottom: 6rem;
+}
+
+/* Entrance handled by GSAP; magnetic cursor-follow translate applied inline.
+   A radar "ping" ring pulses outward behind the badge continuously. */
+.pxh-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 30px;
+  color: #00FFFF;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(30px);
+  animation: pxh-badgePulse 4s ease-in-out infinite;
+  position: relative;
+  will-change: transform;
+}
+
+@keyframes pxh-badgePulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
+    transform: scale(1.05);
+  }
+}
+
+.pxh-badge-ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  border: 2px solid #00FFFF;
+  opacity: 0.6;
+  animation: pxh-ping 2.4s cubic-bezier(0, 0.4, 0.6, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes pxh-ping {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+
+.pxh-badge-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  animation: pxh-badgeIconSpin 8s linear infinite;
+}
+
+@keyframes pxh-badgeIconSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.pxh-contact-title {
+  font-size: 4.5rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+}
+
+/* Word-by-word mask reveal (2D translateY, no rotateX) */
+.pxh-title-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
+}
+
+.pxh-title-word {
+  display: inline-block;
+  background: linear-gradient(45deg, #00FFFF, #0066FF);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: pxh-titleGradientShift 6s ease infinite;
+  text-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
+  will-change: transform;
+}
+
+.pxh-title-word:not(:last-child)::after {
+  content: '\00a0';
+}
+
+@keyframes pxh-titleGradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.pxh-contact-subtitle {
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.pxh-subtitle-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.pxh-subtitle-word {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Content grid */
+.pxh-contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Entrance now handled by GSAP ScrollTrigger */
+.pxh-contact-info-section {
+  will-change: transform;
+}
+
+.pxh-info-header {
+  margin-bottom: 3rem;
+}
+
+.pxh-info-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.pxh-info-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #00FFFF);
+  border-radius: 2px;
+}
+
+.pxh-info-description {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.pxh-contact-info-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+/* Entrance now handled by GSAP ScrollTrigger. Hover lift is a flat
+   translateY (no rotateX) plus a diagonal shine sweep. */
+.pxh-info-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.pxh-info-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--info-color);
+  box-shadow: 0 20px 50px rgba(var(--info-color), 0.3);
+}
+
+/* Diagonal shine that sweeps across the card on hover */
+.pxh-info-shine {
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+  pointer-events: none;
+}
+
+.pxh-info-card:hover .pxh-info-shine {
+  left: 130%;
+}
+
+.pxh-info-icon-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.pxh-info-icon {
+  width: 3rem;
+  height: 3rem;
+  background: var(--info-gradient);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  z-index: 2;
+}
+
+/* 2D-only "flip": a snappy scale/rotate bounce instead of a 3D rotateY flip */
+.pxh-info-card:hover .pxh-info-icon {
+  transform: scale(1.15) rotate(-8deg);
+}
+
+.pxh-info-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.pxh-info-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: var(--info-color);
+  border-radius: 15px;
+  opacity: 0;
+  filter: blur(15px);
+  transition: opacity 0.4s ease;
+  animation: pxh-infoGlowPulse 3s ease-in-out infinite;
+}
+
+@keyframes pxh-infoGlowPulse {
+  0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  50% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.pxh-info-card:hover .pxh-info-glow {
+  opacity: 0.5;
+}
+
+.pxh-info-content {
+  flex: 1;
+}
+
+.pxh-info-title-card {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.pxh-info-card:hover .pxh-info-title-card {
+  color: var(--info-color);
+}
+
+.pxh-info-main {
+  font-size: 1rem;
+  color: var(--info-color);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.pxh-info-desc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.pxh-info-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--info-gradient);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.pxh-info-card:hover .pxh-info-overlay {
+  opacity: 0.05;
+}
+
+.pxh-contact-features {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pxh-features-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.pxh-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.pxh-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.pxh-feature-item:hover {
+  background: rgba(0, 255, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.pxh-feature-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: #00FFFF;
+  flex-shrink: 0;
+}
+
+.pxh-feature-text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Entrance now handled by GSAP ScrollTrigger (clip-path wipe + fade) */
+.pxh-contact-form-section {
+  will-change: transform;
+}
+
+.pxh-form-container {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 25px;
+  padding: 3rem;
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.pxh-form-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+  animation: pxh-formContainerRotate 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes pxh-formContainerRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.pxh-form-header {
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pxh-form-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.pxh-form-description {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.pxh-contact-form {
+  position: relative;
+  z-index: 1;
+}
+
+.pxh-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pxh-form-row:has(.pxh-form-group:only-child) {
+  grid-template-columns: 1fr;
+}
+
+.pxh-form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Growing focus underline shared by every field type — replaces a static
+   border-glow-only focus state with a deliberate "draw" animation */
+.pxh-form-group::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  bottom: -2px;
+  height: 2px;
+  background: linear-gradient(90deg, #00FFFF, #0066FF);
+  border-radius: 2px;
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pxh-form-group:focus-within::after {
+  left: 0;
+  right: 0;
+}
+
+.pxh-form-label {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Floating label: rests over the input like a placeholder, then lifts
+   above the field on focus or once content is present */
+.pxh-form-label.pxh-floating {
+  position: absolute;
+  left: 1.2rem;
+  top: 1rem;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
+  color: rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pxh-form-input:focus ~ .pxh-form-label.pxh-floating,
+.pxh-form-input:not(:placeholder-shown) ~ .pxh-form-label.pxh-floating,
+.pxh-form-textarea:focus ~ .pxh-form-label.pxh-floating,
+.pxh-form-textarea:not(:placeholder-shown) ~ .pxh-form-label.pxh-floating {
+  top: -0.55rem;
+  left: 0.9rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #00FFFF;
+}
+
+/* Placeholders stay hidden until focused, so they never collide with the
+   floating label sitting in the same resting position */
+.pxh-form-input::placeholder,
+.pxh-form-textarea::placeholder {
+  color: transparent;
+  transition: color 0.3s ease;
+}
+
+.pxh-form-input:focus::placeholder,
+.pxh-form-textarea:focus::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.pxh-form-input,
+.pxh-form-select,
+.pxh-form-textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(20px);
+}
+
+.pxh-form-input:focus,
+.pxh-form-select:focus,
+.pxh-form-textarea:focus {
+  outline: none;
+  border-color: #00FFFF;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pxh-form-select {
+  cursor: pointer;
+}
+
+.pxh-form-select option {
+  background: #1a1a2e;
+  color: white;
+}
+
+.pxh-form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+}
+
+/* Liquid-fill magnetic submit button. A radial gradient expands from the
+   cursor position on hover via clip-path — a 2D "fill" reveal, no 3D. */
+.pxh-form-submit {
+  width: 100%;
+  background: linear-gradient(45deg, #00FFFF, #0066FF);
+  background-size: 200% 200%;
+  border: none;
+  border-radius: 50px;
+  padding: 1.3rem 2rem;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  margin-top: 1rem;
+  animation: pxh-submitGradient 3s ease infinite;
+  will-change: transform;
+  --fill-x: 50%;
+  --fill-y: 50%;
+}
+
+@keyframes pxh-submitGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.pxh-form-submit::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, #0066FF, #00FFFF);
+  clip-path: circle(0% at var(--fill-x) var(--fill-y));
+  transition: clip-path 0.6s ease;
+  z-index: 0;
+}
+
+.pxh-form-submit:hover::after {
+  clip-path: circle(140% at var(--fill-x) var(--fill-y));
+}
+
+.pxh-form-submit:hover {
+  box-shadow: 0 15px 40px rgba(0, 255, 255, 0.4);
+}
+
+.pxh-form-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.pxh-form-submit.submitting {
+  background: linear-gradient(45deg, #666, #888);
+  animation: none;
+}
+
+.pxh-form-submit.success {
+  background: linear-gradient(45deg, #00FF88, #00CC66);
+  animation: none;
+}
+
+.pxh-submit-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pxh-submit-icon,
+.pxh-submit-arrow {
+  width: 1.2rem;
+  height: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+/* 2D hover response: the icon rotates in-plane and the arrow slides,
+   instead of a 3D rotateY flip */
+.pxh-form-submit:hover .pxh-submit-icon {
+  transform: rotate(-18deg) scale(1.1);
+}
+
+.pxh-form-submit:hover .pxh-submit-arrow {
+  transform: translateX(6px);
+}
+
+.pxh-loading-spinner {
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: pxh-spin 1s linear infinite;
+}
+
+@keyframes pxh-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Hand-drawn checkmark: circle and check stroke both animate in via
+   stroke-dashoffset when the success state appears */
+.pxh-check-draw {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex-shrink: 0;
+}
+
+.pxh-check-circle {
+  stroke: white;
+  stroke-width: 3;
+  stroke-dasharray: 151;
+  stroke-dashoffset: 151;
+  animation: pxh-drawCircle 0.5s ease forwards;
+}
+
+.pxh-check-mark {
+  stroke: white;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: pxh-drawCheck 0.35s ease forwards 0.4s;
+}
+
+@keyframes pxh-drawCircle {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes pxh-drawCheck {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Particle burst radiating from the button center on success */
+.pxh-burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.pxh-burst-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  margin: -3px;
+  border-radius: 50%;
+  background: white;
+  opacity: 0;
+  transform: rotate(var(--rot)) translateY(0) scale(1);
+  animation: pxh-burstOut 0.8s ease-out forwards;
+}
+
+@keyframes pxh-burstOut {
+  0% { opacity: 1; transform: rotate(var(--rot)) translateY(0) scale(1); }
+  100% { opacity: 0; transform: rotate(var(--rot)) translateY(-46px) scale(0.3); }
+}
+
+/* Error shake — a purely horizontal (2D) oscillation */
+@keyframes pxh-shakeKeys {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(4px); }
+  30%, 50%, 70% { transform: translateX(-8px); }
+  40%, 60% { transform: translateX(8px); }
+}
+
+.pxh-form-submit.pxh-shake {
+  animation: pxh-shakeKeys 0.6s ease;
+}
+
+.pxh-submit-error {
+  color: #FF6B6B;
+  font-size: 0.9rem;
+  margin-top: 0.8rem;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .pxh-contact-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .pxh-contact-title {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pxh-contact {
+    padding: 6rem 0;
+  }
+  
+  .pxh-contact-title {
+    font-size: 2.8rem;
+  }
+  
+  .pxh-form-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .pxh-form-container {
+    padding: 2rem;
+  }
+  
+  .pxh-features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pxh-info-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pxh-contact-container {
+    padding: 0 1rem;
+  }
+  
+  .pxh-contact-title {
+    font-size: 2.2rem;
+  }
+  
+  .pxh-contact-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .pxh-info-title,
+  .pxh-form-title {
+    font-size: 2rem;
+  }
+  
+  .pxh-form-container {
+    padding: 1.5rem;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .pxh-bg-gradient,
+  .pxh-badge-icon,
+  .pxh-header-badge,
+  .pxh-badge-ping,
+  .pxh-info-glow,
+  .pxh-form-container::before,
+  .pxh-form-submit {
+    animation: none !important;
+  }
+}
